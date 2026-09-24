@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Soundcloud slicing</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  
+  <body>
+    <header class="navbar">
+      <div class="nav-left">
+        <img src="assets/icons/SoundCloud.jpg" alt="Soundcloud Logo" width="55" height="55">
+        <ul class="nav-list">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#feed">Feed</a></li>
+          <li><a href="#library">Library</a></li>
+        </ul>
+      </div>
+
+      <div class="nav-center">
+        <form class="search-form">
+          <input type="text" placeholder="Search" />
+          <button type="submit" aria-label="Search">
+            <img src="assets/icons/search.png" alt="Search Icon" width="20" height="20">
+          </button>
+        </form>
+      </div>
+
+      <div class="nav-right">
+      <ul class="nav-list-secondary">
+        <li><a href="#artist-pro" class="link-pro">Try Artist Pro</a></li>
+        <li><a href="#artist-studio">Artist Studio</a></li>
+        <li><a href="#upload">Upload</a></li>
+      </ul>
+
+    </div>
+
+    </header>
+
+      </header>
+
+  <!-- ================= SUB NAV TABS ================= -->
+  <nav class="sub-nav">
+    <ul class="tab-list">
+      <li><a href="#recently-played" class="tab-link active">Overview</a></li>
+      <li><a href="#likes" class="tab-link">Likes</a></li>
+      <li><a href="#" class="tab-link">Playlists</a></li>
+      <li><a href="#" class="tab-link">Albums</a></li>
+      <li><a href="#" class="tab-link">Stations</a></li>
+      <li><a href="#" class="tab-link">Following</a></li>
+      <li><a href="#" class="tab-link">History</a></li>
+    </ul>
+  </nav>
+
+  <!-- ================= MAIN CONTENT ================= -->
+  <main class="main-content">
+
+    <section class="track-section" id="recently-played">
+      <h2 class="section-title">Recently played</h2>
+      <div class="track-grid" id="recentGrid">
+        <!-- card lagu diisi lewat JS -->
+      </div>
+    </section>
+
+    <section class="track-section" id="likes">
+      <h2 class="section-title">Likes</h2>
+      <div class="track-grid" id="likesGrid">
+        <!-- card lagu diisi lewat JS -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= PLAYER BAR ================= -->
+  <footer class="player-bar">
+
+    <div class="player-controls">
+      <button class="ctrl-btn" id="prevBtn" aria-label="Previous">
+        <img src="assets/icons/prev.png" alt="Previous">
+      </button>
+      <button class="ctrl-btn play-btn" id="playBtn" aria-label="Play">
+        <img src="assets/icons/play.png" alt="Play" class="icon-play">
+        <img src="assets/icons/pause.png" alt="Pause" class="icon-pause" style="display:none">
+      </button>
+      <button class="ctrl-btn" id="nextBtn" aria-label="Next">
+        <img src="assets/icons/next.png" alt="Next">
+      </button>
+      <button class="ctrl-btn ctrl-small" aria-label="Shuffle">
+        <img src="assets/icons/shuffle.png" alt="Shuffle">
+      </button>
+      <button class="ctrl-btn ctrl-small" aria-label="Repeat">
+        <img src="assets/icons/repeat.png" alt="Repeat">
+      </button>
+    </div>
+
+    <div class="player-progress">
+      <span class="time-current" id="timeCurrent">1:24</span>
+      <div class="progress-bar" id="progressBar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <span class="time-total">5:33</span>
+    </div>
+
+    <div class="player-track-info">
+      <button class="icon-btn-sm" aria-label="Volume">
+        <img src="assets/icons/volume.png" alt="Volume">
+      </button>
+
+      <div class="track-mini-cover"></div>
+      <div class="track-mini-text">
+        <span class="track-mini-artist">The Jansen</span>
+        <span class="track-mini-title">Langit Tak Seharusnya Biru</span>
+      </div>
+
+      <button class="icon-btn-sm like-btn" id="likeBtn" aria-label="Like">
+        <img src="assets/icons/heart.png" alt="Like">
+      </button>
+      <button class="icon-btn-sm" aria-label="Queue">
+        <img src="assets/icons/queue.png" alt="Queue">
+      </button>
+    </div>
+
+  </footer>
+
+  <footer class="static-footer">
+  <div class="footer-links">
+    <a href="#">Legal</a> &middot; 
+    <a href="#">Privacy</a> &middot; 
+    <a href="#">Cookie Policy</a> &middot; 
+    <a href="#">Cookie Manager</a> &middot; 
+    <a href="#">Imprint</a> &middot; 
+    <a href="#">Artist Resources</a> &middot; 
+    <a href="#">Newsroom</a> &middot; 
+    <a href="#">Topics</a> &middot; 
+    <a href="#">Charts</a> &middot; 
+    <a href="#">Transparency Reports</a>
+  </div>
+  <div class="footer-language">
+    <span class="lang-label">Language:</span> <a href="#" class="lang-link">English (US)</a>
+  </div>
+  </footer>
+
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+    

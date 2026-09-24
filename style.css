@@ -1,0 +1,573 @@
+/* RESET & VARIABLES */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-dark: #121212;
+  --bg-darker: #0a0a0a;
+  --bg-card: #1a1a1a;
+  --text-white: #ffffff;
+  --text-grey: #a8a8a8;
+  --text-grey-dim: #767676;
+  --accent-orange: #ff5500;
+  --border-color: #2b2b2b;
+  --navbar-height: 64px;
+  --subnav-height: 48px;
+  --player-height: 72px;
+}
+
+body {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-white);
+  padding-top: calc(var(--navbar-height) + var(--subnav-height));
+  padding-bottom: var(--player-height);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ============================================
+   NAVBAR
+   ============================================ */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--navbar-height);
+  background-color: var(--bg-darker);
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  z-index: 100;
+}
+
+/* --- Grup kiri: logo + menu utama --- */
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.nav-left img {
+  border-radius: 4px;
+}
+
+.nav-list {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-list li a {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-grey);
+  padding: 8px 4px;
+  transition: color 0.2s ease;
+}
+
+.nav-list li a:hover,
+.nav-list li a.active {
+  color: var(--text-white);
+}
+
+/* --- Grup tengah: search bar --- */
+.nav-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  max-width: 500px;
+  margin: 0 24px;
+}
+
+.search-form {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background-color: #2a2a2a;
+  border-radius: 4px;
+  padding: 0 12px;
+}
+
+.search-form input {
+  flex: 1;
+  background: none;
+  border: none;
+  outline: none;
+  color: var(--text-white);
+  padding: 10px 8px;
+  font-size: 14px;
+}
+
+.search-form input::placeholder {
+  color: var(--text-grey-dim);
+}
+
+.search-form button img {
+  width: 18px;
+  height: 18px;
+  opacity: 0.7;
+}
+
+/* --- Grup kanan: link sekunder --- */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-list-secondary {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.nav-list-secondary li a {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-grey);
+}
+
+.nav-list-secondary li a.link-pro {
+  color: var(--accent-orange);
+}
+
+/* Avatar & icon kanan (notif, pesan, more) */
+.user-avatar-wrap {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.avatar-sm {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #3a3a3a;
+}
+
+.chevron {
+  width: 14px;
+  height: 14px;
+  opacity: 0.7;
+}
+
+.icon-btn {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-btn img {
+  width: 20px;
+  height: 20px;
+  opacity: 0.8;
+}
+
+/* --- Hamburger (mobile only) --- */
+.hamburger-btn {
+  display: none;
+}
+
+/* ============================================
+   SUB NAV TABS
+   ============================================ */
+.sub-nav {
+  position: fixed;
+  top: var(--navbar-height);
+  left: 0;
+  right: 0;
+  height: var(--subnav-height);
+  background-color: var(--bg-dark);
+  border-bottom: 1px solid var(--border-color);
+  z-index: 99;
+  overflow-x: auto;
+}
+
+.tab-list {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 20px;
+  gap: 28px;
+  white-space: nowrap;
+}
+
+.tab-link {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-grey);
+  padding: 4px 0;
+  border-bottom: 2px solid transparent;
+}
+
+.tab-link.active,
+.tab-link:hover {
+  color: var(--text-white);
+  border-bottom-color: var(--text-white);
+}
+
+/* ============================================
+   MAIN CONTENT & TRACK GRID
+   ============================================ */
+.main-content {
+  padding: 24px 20px 40px;
+}
+
+.track-section {
+  margin-bottom: 40px;
+}
+
+.section-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.track-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 25px;
+}
+
+/* Kartu lagu (dibuat lewat JS, class ini disiapkan lebih dulu) */
+.track-card {
+  cursor: pointer;
+}
+
+.track-cover {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background-color: var(--bg-card);
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+
+.track-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-white);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.track-subtitle {
+  font-size: 13px;
+  color: var(--text-grey);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ============================================
+   PLAYER BAR
+   ============================================ */
+.player-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: var(--player-height);
+  background-color: var(--bg-darker);
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  gap: 24px;
+  z-index: 100;
+}
+
+/* --- Kiri: tombol kontrol --- */
+.player-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.ctrl-btn {
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ctrl-btn img {
+  width: 45px;
+  height: 45px;
+  opacity: 0.85;
+}
+
+.ctrl-small img {
+  width: 20px;
+  height: 20px;
+  opacity: 0.6;
+}
+
+.play-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.play-btn img {
+  width: 50px;
+  height: 50px;
+}
+
+/* --- Tengah: progress bar --- */
+.player-progress {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.time-current,
+.time-total {
+  font-size: 12px;
+  color: var(--text-grey);
+  min-width: 32px;
+}
+
+.progress-bar {
+  flex: 1;
+  height: 4px;
+  background-color: #3a3a3a;
+  border-radius: 2px;
+  cursor: pointer;
+  position: relative;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 25%; /* nilai awal, nanti diubah lewat JS */
+  background-color: var(--accent-orange);
+  border-radius: 2px;
+}
+
+/* --- Kanan: info track --- */
+.player-track-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 220px;
+}
+
+.icon-btn-sm {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.icon-btn-sm img {
+  width: 20px;
+  height: 20px;
+  opacity: 0.75;
+}
+
+.track-mini-cover {
+  width: 40px;
+  height: 40px;
+  background-color: var(--bg-card);
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.track-mini-text {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.track-mini-artist {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-white);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.track-mini-title {
+  font-size: 12px;
+  color: var(--text-grey);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.like-btn.active img {
+  filter: invert(41%) sepia(94%) saturate(1837%) hue-rotate(343deg) brightness(101%) contrast(101%);
+}
+
+/* ============================================
+   RESPONSIVE - TABLET (max 1024px)
+   ============================================ */
+@media (max-width: 1024px) {
+  .nav-list-secondary li a:not(.link-pro) {
+    display: none;
+  }
+
+  .player-track-info {
+    min-width: 160px;
+  }
+
+  .track-mini-text {
+    display: none;
+  }
+}
+
+/* ============================================
+   RESPONSIVE - MOBILE (max 768px)
+   ============================================ */
+@media (max-width: 768px) {
+  .hamburger-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+  }
+
+  .hamburger-btn img {
+    width: 20px;
+    height: 20px;
+  }
+
+  .nav-list {
+    display: none;
+  }
+
+  .nav-center {
+    display: none;
+  }
+
+  .nav-list-secondary {
+    display: none;
+  }
+
+  .nav-left {
+    gap: 12px;
+  }
+
+  .navbar {
+    padding: 0 12px;
+    gap: 8px;
+  }
+
+  .nav-right {
+    gap: 10px;
+  }
+
+  .tab-list {
+    padding: 0 12px;
+    gap: 20px;
+  }
+
+  .main-content {
+    padding: 16px 12px 32px;
+  }
+
+  .track-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 12px;
+  }
+
+  .player-bar {
+    padding: 0 12px;
+    gap: 12px;
+  }
+
+  .player-controls {
+    gap: 8px;
+  }
+
+  .ctrl-small {
+    display: none;
+  }
+
+  .player-track-info {
+    min-width: auto;
+  }
+
+}
+
+/* ============================================
+   STATIC FOOTER
+   ============================================ */
+.static-footer {
+  /* Sesuaikan dengan warna background utama, menyatu dengan layout */
+  background-color: var(--bg-dark); 
+  padding: 40px 0 20px 0;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  border-top: 1px solid var(--border-color); /* Opsional, garis pembatas atas */
+  margin-top: 40px;
+}
+
+.footer-links {
+  font-size: 13px;
+  color: #999999;
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+
+.footer-links a {
+  color: #999999;
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  color: #cccccc;
+}
+
+.footer-language {
+  font-size: 13px;
+}
+
+.lang-label {
+  color: #ffffff;
+  font-weight: bold;
+  margin-right: 2px;
+}
+
+.lang-link {
+  color: #3366cc;
+  text-decoration: none;
+}
+
+.lang-link:hover {
+  text-decoration: underline;
+}
+
