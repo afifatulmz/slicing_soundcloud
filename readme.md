@@ -10,4 +10,4 @@ Tugas Slicing Website menggunakan Plain HTML, CSS, dan JavaScript DOM.
 # yang di-slicing page Library -> Overview
 
 # Screenshot
-![Tampilan SoundCloud Slicing](assets/images/referensi_slicing.jpg)
+![Tampilan SoundCloud Slicing](assets/images/referensi_slicing.png)
